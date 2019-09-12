@@ -1,9 +1,13 @@
+resource "random_id" "name" {
+  byte_length = 4
+}
+
 resource "ibm_is_vpc" "vpc1" {
-  name = "vpc1"
+  name = "vpc-${random_id.name.hex}"
 }
 
 resource "ibm_is_subnet" "subnet1" {
-  name            = "subnet1"
+  name            = "subnet-${random_id.name.hex}"
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone1}"
   ipv4_cidr_block = "10.240.0.0/28"
@@ -15,12 +19,12 @@ resource "ibm_is_subnet" "subnet1" {
 }
 
 resource "ibm_is_vpn_gateway" "VPNGateway1" {
-  name   = "vpn1"
+  name   = "vpn-${random_id.name.hex}"
   subnet = "${ibm_is_subnet.subnet1.id}"
 }
 
 resource "ibm_is_vpn_gateway_connection" "VPNGatewayConnection1" {
-  name          = "vpnconn1"
+  name          = "vpnconn-${random_id.name.hex}"
   vpn_gateway   = "${ibm_is_vpn_gateway.VPNGateway1.id}"
   peer_address  = "${ibm_is_vpn_gateway.VPNGateway1.public_ip_address}"
   preshared_key = "VPNDemoPassword"
@@ -36,7 +40,7 @@ resource "ibm_is_ssh_key" "sshkey" {
 
 resource "ibm_is_instance" "instance1" {
   count   = "${var.num_vms_per_VPC}"
-  name    = "instance1"
+  name    = "instance-${random_id.name.hex}"
   image   = "${var.image}"
   profile = "${var.profile}"
 
@@ -52,7 +56,7 @@ resource "ibm_is_instance" "instance1" {
 }
 
 resource "ibm_is_floating_ip" "floatingip1" {
-  name   = "fip1"
+  name   = "fip-${random_id.name.hex}"
   target = "${ibm_is_instance.instance1.primary_network_interface.0.id}"
 }
 
@@ -93,11 +97,11 @@ resource "ibm_is_security_group_rule" "sg1_app_tcp_rule" {
 }
 
 resource "ibm_is_vpc" "vpc2" {
-  name = "vpc2"
+  name = "vpc-${random_id.name.hex}"
 }
 
 resource "ibm_is_subnet" "subnet2" {
-  name            = "subnet2"
+  name            = "subnet-${random_id.name.hex}"
   vpc             = "${ibm_is_vpc.vpc2.id}"
   zone            = "${var.zone2}"
   ipv4_cidr_block = "10.240.64.0/28"
@@ -109,14 +113,14 @@ resource "ibm_is_subnet" "subnet2" {
 }
 
 resource "ibm_is_ipsec_policy" "example" {
-  name                     = "test-ipsec"
+  name                     = "test-ipsec-${random_id.name.hex}"
   authentication_algorithm = "md5"
   encryption_algorithm     = "3des"
   pfs                      = "disabled"
 }
 
 resource "ibm_is_ike_policy" "example" {
-  name                     = "test-ike"
+  name                     = "test-ike-${random_id.name.hex}"
   authentication_algorithm = "md5"
   encryption_algorithm     = "3des"
   dh_group                 = 2
@@ -124,12 +128,12 @@ resource "ibm_is_ike_policy" "example" {
 }
 
 resource "ibm_is_vpn_gateway" "VPNGateway2" {
-  name   = "vpn2"
+  name   = "vpn-${random_id.name.hex}"
   subnet = "${ibm_is_subnet.subnet2.id}"
 }
 
 resource "ibm_is_vpn_gateway_connection" "VPNGatewayConnection2" {
-  name           = "vpnconn2"
+  name           = "vpnconn-${random_id.name.hex}"
   vpn_gateway    = "${ibm_is_vpn_gateway.VPNGateway2.id}"
   peer_address   = "${ibm_is_vpn_gateway.VPNGateway2.public_ip_address}"
   preshared_key  = "VPNDemoPassword"
@@ -141,7 +145,7 @@ resource "ibm_is_vpn_gateway_connection" "VPNGatewayConnection2" {
 
 resource "ibm_is_instance" "instance2" {
   count   = "${var.num_vms_per_VPC}"
-  name    = "instance2"
+  name    = "instance-${random_id.name.hex}"
   image   = "${var.image}"
   profile = "${var.profile}"
 
@@ -157,7 +161,7 @@ resource "ibm_is_instance" "instance2" {
 }
 
 resource "ibm_is_floating_ip" "floatingip2" {
-  name   = "fip2"
+  name   = "fip-${random_id.name.hex}"
   target = "${ibm_is_instance.instance2.primary_network_interface.0.id}"
 }
 

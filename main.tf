@@ -6,6 +6,12 @@ resource "random_id" "name2" {
   byte_length = 2
 }
 
+locals {
+     ZONE1     = "${var.region}-1"
+     ZONE2     = "${var.region}-2"
+   }
+
+
 resource "ibm_is_vpc" "vpc1" {
   name = "vpc-${random_id.name1.hex}"
 }
@@ -13,8 +19,8 @@ resource "ibm_is_vpc" "vpc1" {
 resource "ibm_is_subnet" "subnet1" {
   name            = "subnet-${random_id.name1.hex}"
   vpc             = "${ibm_is_vpc.vpc1.id}"
-  zone            = "${var.zone1}"
-  ipv4_cidr_block = "10.240.0.0/28"
+  zone            = "${local.ZONE1}"
+  total_ipv4_address_count = 256
 
   provisioner "local-exec" {
     command = "sleep 300"
@@ -54,7 +60,7 @@ resource "ibm_is_instance" "instance1" {
   }
 
   vpc       = "${ibm_is_vpc.vpc1.id}"
-  zone      = "${var.zone1}"
+  zone      = "${local.ZONE1}"
   keys      = ["${ibm_is_ssh_key.sshkey.id}"]
   user_data = "${file("nginx.sh")}"
 }
@@ -107,8 +113,8 @@ resource "ibm_is_vpc" "vpc2" {
 resource "ibm_is_subnet" "subnet2" {
   name            = "subnet-${random_id.name2.hex}"
   vpc             = "${ibm_is_vpc.vpc2.id}"
-  zone            = "${var.zone2}"
-  ipv4_cidr_block = "10.240.64.0/28"
+  zone            = "${local.ZONE2}"
+  total_ipv4_address_count = 256
 
   provisioner "local-exec" {
     command = "sleep 300"
@@ -159,7 +165,7 @@ resource "ibm_is_instance" "instance2" {
   }
 
   vpc       = "${ibm_is_vpc.vpc2.id}"
-  zone      = "${var.zone2}"
+  zone      = "${local.ZONE2}"
   keys      = ["${ibm_is_ssh_key.sshkey.id}"]
   user_data = "${file("nginx.sh")}"
 }

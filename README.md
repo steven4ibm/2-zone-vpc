@@ -22,8 +22,7 @@ The following variables need to be set before use
 
 |Variable Name|Description|Default Value|
 |-------------|-----------|-------------|
-|zone1|deployment zone for VPC 1|us-south-1|
-|zone2|deployment zone for VPC 2|us-south-2|
+|region|Region to deploy VPC|us-east|
 |ssh_public_key|public SSH key||
 |ssh_key_name|name of SSH key|VPC_ssh_key|
 |num_vms_per_VPC|number of VMs to create per VPC|1|

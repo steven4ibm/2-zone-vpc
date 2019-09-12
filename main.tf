@@ -59,7 +59,7 @@ resource "ibm_is_floating_ip" "floatingip1" {
 resource "ibm_is_security_group_rule" "sg1_tcp_rule" {
   depends_on = ["ibm_is_floating_ip.floatingip1"]
   group      = "${ibm_is_vpc.vpc1.default_security_group}"
-  direction  = "inbound"
+  direction  = "ingress"
   remote     = "0.0.0.0/0"
 
   tcp = {
@@ -71,7 +71,7 @@ resource "ibm_is_security_group_rule" "sg1_tcp_rule" {
 resource "ibm_is_security_group_rule" "sg1_icmp_rule" {
   depends_on = ["ibm_is_floating_ip.floatingip1"]
   group      = "${ibm_is_vpc.vpc1.default_security_group}"
-  direction  = "inbound"
+  direction  = "ingress"
   remote     = "0.0.0.0/0"
 
   icmp = {
@@ -83,7 +83,7 @@ resource "ibm_is_security_group_rule" "sg1_icmp_rule" {
 resource "ibm_is_security_group_rule" "sg1_app_tcp_rule" {
   depends_on = ["ibm_is_floating_ip.floatingip1"]
   group      = "${ibm_is_vpc.vpc1.default_security_group}"
-  direction  = "inbound"
+  direction  = "ingress"
   remote     = "0.0.0.0/0"
 
   tcp = {
@@ -164,7 +164,7 @@ resource "ibm_is_floating_ip" "floatingip2" {
 resource "ibm_is_security_group_rule" "sg2_tcp_rule" {
   depends_on = ["ibm_is_floating_ip.floatingip2"]
   group      = "${ibm_is_vpc.vpc2.default_security_group}"
-  direction  = "inbound"
+  direction  = "ingress"
   remote     = "0.0.0.0/0"
 
   tcp = {
@@ -176,7 +176,7 @@ resource "ibm_is_security_group_rule" "sg2_tcp_rule" {
 resource "ibm_is_security_group_rule" "sg2_icmp_rule" {
   depends_on = ["ibm_is_floating_ip.floatingip2"]
   group      = "${ibm_is_vpc.vpc2.default_security_group}"
-  direction  = "inbound"
+  direction  = "ingress"
   remote     = "0.0.0.0/0"
 
   icmp = {
@@ -188,7 +188,7 @@ resource "ibm_is_security_group_rule" "sg2_icmp_rule" {
 resource "ibm_is_security_group_rule" "sg2_app_tcp_rule" {
   depends_on = ["ibm_is_floating_ip.floatingip2"]
   group      = "${ibm_is_vpc.vpc2.default_security_group}"
-  direction  = "inbound"
+  direction  = "ingress"
   remote     = "0.0.0.0/0"
 
   tcp = {

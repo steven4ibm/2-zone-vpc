@@ -1,13 +1,17 @@
-resource "random_id" "name" {
-  byte_length = 4
+resource "random_id" "name1" {
+  byte_length = 2
+}
+
+resource "random_id" "name2" {
+  byte_length = 2
 }
 
 resource "ibm_is_vpc" "vpc1" {
-  name = "vpc-${random_id.name.hex}"
+  name = "vpc-${random_id.name1.hex}"
 }
 
 resource "ibm_is_subnet" "subnet1" {
-  name            = "subnet-${random_id.name.hex}"
+  name            = "subnet-${random_id.name1.hex}"
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone1}"
   ipv4_cidr_block = "10.240.0.0/28"
@@ -19,12 +23,12 @@ resource "ibm_is_subnet" "subnet1" {
 }
 
 resource "ibm_is_vpn_gateway" "VPNGateway1" {
-  name   = "vpn-${random_id.name.hex}"
+  name   = "vpn-${random_id.name1.hex}"
   subnet = "${ibm_is_subnet.subnet1.id}"
 }
 
 resource "ibm_is_vpn_gateway_connection" "VPNGatewayConnection1" {
-  name          = "vpnconn-${random_id.name.hex}"
+  name          = "vpnconn-${random_id.name1.hex}"
   vpn_gateway   = "${ibm_is_vpn_gateway.VPNGateway1.id}"
   peer_address  = "${ibm_is_vpn_gateway.VPNGateway1.public_ip_address}"
   preshared_key = "VPNDemoPassword"
@@ -34,13 +38,13 @@ resource "ibm_is_vpn_gateway_connection" "VPNGatewayConnection1" {
 }
 
 resource "ibm_is_ssh_key" "sshkey" {
-  name       = "${var.ssh_key_name}"
+  name       = "${var.ssh_key_name}-${random_id.name1.hex}"
   public_key = "${var.ssh_public_key}"
 }
 
 resource "ibm_is_instance" "instance1" {
   count   = "${var.num_vms_per_VPC}"
-  name    = "instance-${random_id.name.hex}"
+  name    = "instance-${random_id.name1.hex}"
   image   = "${var.image}"
   profile = "${var.profile}"
 
@@ -56,7 +60,7 @@ resource "ibm_is_instance" "instance1" {
 }
 
 resource "ibm_is_floating_ip" "floatingip1" {
-  name   = "fip-${random_id.name.hex}"
+  name   = "fip-${random_id.name1.hex}"
   target = "${ibm_is_instance.instance1.primary_network_interface.0.id}"
 }
 
@@ -97,11 +101,11 @@ resource "ibm_is_security_group_rule" "sg1_app_tcp_rule" {
 }
 
 resource "ibm_is_vpc" "vpc2" {
-  name = "vpc-${random_id.name.hex}"
+  name = "vpc-${random_id.name2.hex}"
 }
 
 resource "ibm_is_subnet" "subnet2" {
-  name            = "subnet-${random_id.name.hex}"
+  name            = "subnet-${random_id.name2.hex}"
   vpc             = "${ibm_is_vpc.vpc2.id}"
   zone            = "${var.zone2}"
   ipv4_cidr_block = "10.240.64.0/28"
@@ -113,14 +117,14 @@ resource "ibm_is_subnet" "subnet2" {
 }
 
 resource "ibm_is_ipsec_policy" "example" {
-  name                     = "test-ipsec-${random_id.name.hex}"
+  name                     = "test-ipsec-${random_id.name2.hex}"
   authentication_algorithm = "md5"
   encryption_algorithm     = "3des"
   pfs                      = "disabled"
 }
 
 resource "ibm_is_ike_policy" "example" {
-  name                     = "test-ike-${random_id.name.hex}"
+  name                     = "test-ike-${random_id.name2.hex}"
   authentication_algorithm = "md5"
   encryption_algorithm     = "3des"
   dh_group                 = 2
@@ -128,12 +132,12 @@ resource "ibm_is_ike_policy" "example" {
 }
 
 resource "ibm_is_vpn_gateway" "VPNGateway2" {
-  name   = "vpn-${random_id.name.hex}"
+  name   = "vpn-${random_id.name2.hex}"
   subnet = "${ibm_is_subnet.subnet2.id}"
 }
 
 resource "ibm_is_vpn_gateway_connection" "VPNGatewayConnection2" {
-  name           = "vpnconn-${random_id.name.hex}"
+  name           = "vpnconn-${random_id.name2.hex}"
   vpn_gateway    = "${ibm_is_vpn_gateway.VPNGateway2.id}"
   peer_address   = "${ibm_is_vpn_gateway.VPNGateway2.public_ip_address}"
   preshared_key  = "VPNDemoPassword"
@@ -145,7 +149,7 @@ resource "ibm_is_vpn_gateway_connection" "VPNGatewayConnection2" {
 
 resource "ibm_is_instance" "instance2" {
   count   = "${var.num_vms_per_VPC}"
-  name    = "instance-${random_id.name.hex}"
+  name    = "instance-${random_id.name2.hex}"
   image   = "${var.image}"
   profile = "${var.profile}"
 
@@ -161,7 +165,7 @@ resource "ibm_is_instance" "instance2" {
 }
 
 resource "ibm_is_floating_ip" "floatingip2" {
-  name   = "fip-${random_id.name.hex}"
+  name   = "fip-${random_id.name2.hex}"
   target = "${ibm_is_instance.instance2.primary_network_interface.0.id}"
 }
 

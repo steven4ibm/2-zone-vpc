@@ -16,8 +16,7 @@ This sample uses chargable services and **will** incur costs for the time the se
 
 The following variables need to be set before use
 
-* `softlayer_username` is an Infrastructure user name. Go to https://cloud.ibm.com/iam/users/, select the user, scroll down and check username under VPN password.
-* `softlayer_api_key` is an Infrastructure API Key. Go to https://cloud.ibm.com/iam/users/, select the user, scroll down and check Classic infrastructure API key under API keys. If you don't have one already, go to https://cloud.ibm.com/iam/#/apikeys and create a new Classic infrastructure key.
+* `ibmcloud_api_key` is an IBM Cloud API Key. If you don't have one already, go to https://cloud.ibm.com/iam/#/apikeys and create a new key.
 
 ### Variables
 

@@ -1,12 +1,9 @@
-variable "softlayer_username" {
-  description = "Your IBM Cloud Infrastructure (SoftLayer) user name."
-}
-variable "softlayer_api_key" {
-  description = "Your IBM Cloud Infrastructure (SoftLayer) API key."
+
+variable "ibmcloud_api_key" {
+  description = "Your IBM Cloud API key."
 }
 
 provider "ibm" {
-  softlayer_username = "${var.softlayer_username}"
-  softlayer_api_key = "${var.softlayer_api_key}"
+  ibmcloud_api_key = "${var.ibmcloud_api_key}"
   generation = "1"
 }

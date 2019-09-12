@@ -7,7 +7,11 @@ variable "zone2" {
 }
 
 variable "ssh_public_key" {
-  default = "~/.ssh/id_rsa.pub"
+  default = ""
+}
+
+variable "num_vms_per_VPC" {
+  default = 1
 }
 
 variable "image" {

@@ -30,11 +30,12 @@ resource "ibm_is_vpn_gateway_connection" "VPNGatewayConnection1" {
 }
 
 resource "ibm_is_ssh_key" "sshkey" {
-  name       = "ssh1"
-  public_key = "${file(var.ssh_public_key)}"
+  name       = "${var.ssh_key_name}"
+  public_key = "${var.ssh_public_key}"
 }
 
 resource "ibm_is_instance" "instance1" {
+  count   = "${var.num_vms_per_VPC}"
   name    = "instance1"
   image   = "${var.image}"
   profile = "${var.profile}"
@@ -139,6 +140,7 @@ resource "ibm_is_vpn_gateway_connection" "VPNGatewayConnection2" {
 }
 
 resource "ibm_is_instance" "instance2" {
+  count   = "${var.num_vms_per_VPC}"
   name    = "instance2"
   image   = "${var.image}"
   profile = "${var.profile}"

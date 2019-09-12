@@ -10,6 +10,10 @@ variable "ssh_public_key" {
   default = ""
 }
 
+variable "ssh_key_name" {
+  default = "VPC_ssh_key"
+}
+
 variable "num_vms_per_VPC" {
   default = 1
 }

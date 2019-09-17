@@ -2,13 +2,13 @@
 
 The 2-Zone VPC template is an IBM Cloud Schematics template that is used to create two virtual private clouds (VPCs) each in a different zone. A user-specified number of virtual machines (VMs) is created in each VPC and loaded with NGINX. Schematics uses [Terraform](https://www.terraform.io/) as the infrastructure-as-code engine. With this template, you can create and manage infrastructure as a single unit.
 
-For more information, go to the documentation for [IBM Cloud Schematics](https://cloud.ibm.com/docs/schematics).
+For more information about how to use this template, go to the documentation for [IBM Cloud Schematics](https://cloud.ibm.com/docs/schematics).
 
 **Note**: This template doesn't install load balancers within the VPCs or a global load balancer for traffic management across VPCs.
 
 ## Costs
 
-This sample uses chargeable services and you are charged for the time the services are deployed. The use of `terraform destroy` results in deletion of all resources.
+This sample uses chargeable services and you are charged for the time the services are deployed. Running the `terraform destroy` command deletes all resources.
 
 ## Dependencies
 
@@ -18,7 +18,7 @@ The user must have Identity and Access Management (IAM) access to create and con
 
 The following variable needs to be set before you can use the template: 
 
-* `ibmcloud_api_key` is an IBM Cloud API key. If you need to create one, go to https://cloud.ibm.com/iam/apikeys.
+* `ibmcloud_api_key` is an IBM Cloud API key. Go to the [IBM Cloud API keys page](https://cloud.ibm.com/iam/apikeys) to create one.
 
 You must also set the following deployment values on the Create page. You can enter customized values or accept the defaults.
 

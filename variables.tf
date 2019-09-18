@@ -16,10 +16,10 @@ variable "num_vms_per_VPC" {
 
 variable "image" {
   default = "7eb4e35b-4257-56f8-d7da-326d85452591"
-  description = "Virtual machine image identifier"
+  description = "Virtual machine image identifier. To get a list of all images, run the ic is images command."
 }
 
 variable "profile" {
   default = "b-2x8"
-  description = "Virtual machine CPU profile"
+  description = "Virtual machine CPU profile. To get a list of all instance profiles, run the ic is instance-profiles command."
 }

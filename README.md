@@ -16,11 +16,7 @@ The user must have Identity and Access Management (IAM) access to create and con
 
 ## Configuring your deployment values
 
-Set the following variable before you use the template: 
-
-* `ibmcloud_api_key` is an IBM Cloud API key. Go to the [IBM Cloud API keys page](https://cloud.ibm.com/iam/apikeys) to create one.
-
-You must also set the following deployment values on the Create page. You can enter customized values or accept the defaults.
+You must set the following deployment values on the Create page. You can enter customized values or accept the defaults.
 
 |Variable Name|Description|Default Value|
 |-------------|-----------|-------------|
@@ -31,6 +27,13 @@ You must also set the following deployment values on the Create page. You can en
 |image|VM image identifier|7eb4e35b-4257-56f8-d7da-326d85452591|
 |profile|VM CPU profile|b-2x8|
 
+**Note** Export the following variable before you use the template in local: 
+
+* `IC_API_KEY` is an IBM Cloud API key. Go to the [IBM Cloud API keys page](https://cloud.ibm.com/iam/apikeys) to create one.
+
+```sh
+export IC_API_KEY="IBM Cloud API Key"
+```
 
 ## Outputs
 

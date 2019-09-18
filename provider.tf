@@ -4,7 +4,7 @@ variable "ibmcloud_api_key" {
 }
 
 variable "region" {
-  description = "Your region to deploy."
+  description = "Region to deploy VPC. To get a list of all regions, run the ic is regions command."
   default = "us-east"
 }
 

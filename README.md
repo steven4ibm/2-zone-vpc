@@ -24,12 +24,12 @@ You must also set the following deployment values on the Create page. You can en
 
 |Variable Name|Description|Default Value|
 |-------------|-----------|-------------|
-|region|Region to deploy VPC|us-east|
+|region|Region to deploy VPC. To get a list of all regions, run the ic is regions command.|us-east|
 |ssh_public_key|Your public key to access the virtual machine. Your public key is saved to a `id_rsa.pub` file in the `.ssh` subdirectory of your home directory.||
 |ssh_key_name|Name of SSH key|VPC_ssh_key|
 |num_vms_per_VPC|Number of VMs to create per VPC|1|
-|image|VM image identifier|7eb4e35b-4257-56f8-d7da-326d85452591|
-|profile|VM CPU profile|b-2x8|
+|image|Virtual machine image identifier. To get a list of all images, run the ic is images command.|7eb4e35b-4257-56f8-d7da-326d85452591|
+|profile|Virtual machine CPU profile. To get a list of all instance profiles, run the ic is instance-profiles command.|b-2x8|
 
 
 ## Outputs

@@ -1,6 +1,6 @@
 # 2-Zone VPC template
 
-The 2-Zone VPC template is an IBM Cloud Schematics template that is used to create two virtual private clouds (VPCs), each in a different zone. A user-specified number of virtual server instances (VSIs) is created in each VPC and loaded with NGINX. Schematics uses [Terraform](https://www.terraform.io/) as the infrastructure-as-code engine. With this template, you can create and manage infrastructure as a single unit.
+The 2-Zone VPC template is an IBM Cloud Schematics template that is used to create two virtual private clouds (VPCs), each in a different zone. A user-specified number of virtual machines is created in each VPC and loaded with NGINX. Schematics uses [Terraform](https://www.terraform.io/) as the infrastructure-as-code engine. With this template, you can create and manage infrastructure as a single unit.
 
 For more information about how to use this template, see the [IBM Cloud Schematics documentation](https://cloud.ibm.com/docs/schematics).
 
@@ -25,11 +25,11 @@ You must also set the following deployment values on the Create page. You can en
 |Variable Name|Description|Default Value|
 |-------------|-----------|-------------|
 |region|Region for deploying VPC, for example, us-east. To get a list of all regions, run the `ic is regions` command.|us-east|
-|ssh_public_key|Your public key to access the virtual server instance. Your public key is saved to a `id_rsa.pub` file in the `.ssh` subdirectory of your home directory.||
+|ssh_public_key|Your public key that is saved to a `id_rsa.pub` file in the `.ssh` subdirectory of your home directory.||
 |ssh_key_name|Name of SSH key|VPC_ssh_key|
-|num_vms_per_VPC|Number of VMs to create per VPC|1|
-|image|Virtual server image identifier. To get a list of all images, run the `ic is images` command.|7eb4e35b-4257-56f8-d7da-326d85452591|
-|profile|Virtual server CPU profile. To get a list of all instance profiles, run the `ic is instance-profiles` command.|b-2x8|
+|num_vms_per_VPC|Number of virtual machines to create per VPC|1|
+|image|Virtual machine image identifier. To get a list of all images, run the `ic is images` command.|7eb4e35b-4257-56f8-d7da-326d85452591|
+|profile|Virtual machine CPU profile. To get a list of all instance profiles, run the `ic is instance-profiles` command.|b-2x8|
 
 
 ## Outputs

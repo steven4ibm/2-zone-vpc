@@ -11,7 +11,7 @@ variable "ssh_key_name" {
 
 variable "num_vms_per_VPC" {
   default = 1
-  description = "Number of virtual server instances to create per virtual private cloud."
+  description = "Number of virtual server instances to create per virtual private cloud"
 }
 
 variable "image" {

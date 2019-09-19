@@ -1,11 +1,11 @@
 
 variable "ibmcloud_api_key" {
-  description = "Your IBM Cloud API key. If you need to create one, go to the [IBM Cloud API keys page](https://cloud.ibm.com/iam/apikeys)."
+  description = "The [IBM Cloud API key](https://cloud.ibm.com/docs/iam?topic=iam-userapikey) with the appropriate permissions to Schematics and VPC infrastructure."
 }
 
 variable "region" {
-  description = "Region for deploying VPC, for example, us-east. To get a list of all regions, run the `ic is regions` command."
-  default = "us-east"
+  description = "The region to create your two VPCs in, such as `us-south`. The VPCs are created in two separate zones within the same region. To get a list of all regions, run `ic is regions`."
+  default = "us-south"
 }
 
 

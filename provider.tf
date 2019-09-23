@@ -1,6 +1,7 @@
 
 variable "ibmcloud_api_key" {
   description = "The [IBM Cloud API key](https://cloud.ibm.com/docs/iam?topic=iam-userapikey) with the appropriate permissions to Schematics and VPC infrastructure."
+  sensitive   = true
 }
 
 variable "region" {

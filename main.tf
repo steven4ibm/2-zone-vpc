@@ -49,7 +49,6 @@ resource "ibm_is_ssh_key" "sshkey" {
 }
 
 resource "ibm_is_instance" "instance1" {
-  count   = "${var.num_vms_per_VPC}"
   name    = "instance-${random_id.name1.hex}"
   image   = "${var.image}"
   profile = "${var.profile}"
@@ -154,7 +153,6 @@ resource "ibm_is_vpn_gateway_connection" "VPNGatewayConnection2" {
 }
 
 resource "ibm_is_instance" "instance2" {
-  count   = "${var.num_vms_per_VPC}"
   name    = "instance-${random_id.name2.hex}"
   image   = "${var.image}"
   profile = "${var.profile}"

@@ -4,7 +4,7 @@ With this template, you can use IBM Cloud Schematics to create two virtual priva
 
 **Included**:
 * 2 [virtual private cloud](https://cloud.ibm.com/docs/vpc-on-classic?topic=vpc-on-classic-getting-started) instances, in separate zones.
-* As many [VPC virtual servers](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-getting-started) as you specify. The virtual servers include an NGINX load balancer.
+* 1 [VPC virtual servers](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-getting-started) instances per zone. The virtual servers include an NGINX load balancer.
 
 **Not included**:
 * No VPC load balancers are created to expose workloads in the virtual servers on the public network.
@@ -50,7 +50,6 @@ Before you apply your template, you can customize the following default variable
 |-------------|-----------|-------------|
 |`region`|The region to create your two VPCs in, such as `us-south`. The VPCs are created in two separate zones within the same region. To get a list of all regions, run `ibmcloud is regions`.|`us-south`|
 |`ssh_key_name`|The name of your public SSH key.|`VPC_ssh_key`|
-|`num_vms_per_VPC`|Specify the number of virtual servers to create in each VPC.|`1`|
 |`image`|Enter the ID of the image that represents the operating system that you want to install on your VPC virtual server. To list available images, run `ibmcloud is images`. The default image is for an `ubuntu-16.04-amd64` OS.|`7eb4e35b-4257-56f8-d7da-326d85452591`|
 |`profile`|Enter the profile of compute CPU and memory resources that you want your VPC virtual servers to have. To list available profiles, run `ibmcloud is instance-profiles`.|`bc1-2x8`|
 

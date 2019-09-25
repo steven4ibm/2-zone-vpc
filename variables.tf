@@ -1,6 +1,5 @@
 
 variable "ssh_public_key" {
-  default = ""
   description = "The [public SSH key](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-ssh-keys) that you use to access your VPC virtual servers. The public key is saved to an `id_rsa.pub` file in the `.ssh` subdirectory of your home directory."
 }
 
@@ -11,7 +10,7 @@ variable "ssh_key_name" {
 
 variable "num_vms_per_VPC" {
   default = 1
-  description = "The number of virtual servers to create in each VPC."
+  description = "The number of virtual servers to create in each VPC. The value should be non-zero, positive value."
 }
 
 variable "image" {

@@ -75,6 +75,10 @@ resource "ibm_is_subnet" "subneta3" {
 resource "random_id" "name2" {
   byte_length = 2
 }
+resource "ibm_is_vpc" "vpc2" {
+  name = "${var.prefix}-vpc-${random_id.name2.hex}"
+  address_prefix_management = "manual"
+}
 # VPC 2 - AZ 1
 resource "ibm_is_vpc_address_prefix" "addpb1" {
   name = "${var.prefix}-subnet-${random_id.name2.hex}-1"

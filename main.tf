@@ -116,7 +116,7 @@ resource "ibm_is_vpc_address_prefix" "addpb3" {
   zone = "${local.ZONE3}"
   cidr = "${local.SUBNETB3}"
 }
-resource "ibm_is_subnet" "subneta3" {
+resource "ibm_is_subnet" "subnetb3" {
   name  = "${var.prefix}-subnet-${random_id.name2.hex}-3"
   vpc   = "${ibm_is_vpc.vpc1.id}"
   zone  = "${local.ZONE3}"

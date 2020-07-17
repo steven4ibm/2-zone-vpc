@@ -32,7 +32,7 @@ resource "ibm_is_subnet" "subneta1" {
   zone  = "${local.ZONE1}"
   ipv4_cidr_block  = "${ibm_is_vpc_address_prefix.addpa1.cidr}"
   provisioner "local-exec" {
-    command = "sleep 300"
+    command = "sleep 30"
     when    = "destroy"
   }
 }
@@ -49,7 +49,7 @@ resource "ibm_is_subnet" "subneta2" {
   zone  = "${local.ZONE2}"
   ipv4_cidr_block  = "${ibm_is_vpc_address_prefix.addpa2.cidr}"
   provisioner "local-exec" {
-    command = "sleep 300"
+    command = "sleep 30"
     when    = "destroy"
   }
 }
@@ -66,7 +66,7 @@ resource "ibm_is_subnet" "subneta3" {
   zone  = "${local.ZONE3}"
   ipv4_cidr_block  = "${ibm_is_vpc_address_prefix.addpa3.cidr}"
   provisioner "local-exec" {
-    command = "sleep 300"
+    command = "sleep 30"
     when    = "destroy"
   }
 }
@@ -92,7 +92,7 @@ resource "ibm_is_subnet" "subnetb1" {
   zone  = "${local.ZONE1}"
   ipv4_cidr_block  = "${ibm_is_vpc_address_prefix.addpb1.cidr}"
   provisioner "local-exec" {
-    command = "sleep 300"
+    command = "sleep 30"
     when    = "destroy"
   }
 }
@@ -109,7 +109,7 @@ resource "ibm_is_subnet" "subnetb2" {
   zone  = "${local.ZONE2}"
   ipv4_cidr_block  = "${ibm_is_vpc_address_prefix.addpb2.cidr}"
   provisioner "local-exec" {
-    command = "sleep 300"
+    command = "sleep 30"
     when    = "destroy"
   }
 }
@@ -126,7 +126,7 @@ resource "ibm_is_subnet" "subnetb3" {
   zone  = "${local.ZONE3}"
   ipv4_cidr_block  = "${ibm_is_vpc_address_prefix.addpb3.cidr}"
   provisioner "local-exec" {
-    command = "sleep 300"
+    command = "sleep 30"
     when    = "destroy"
   }
 }

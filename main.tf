@@ -4,10 +4,6 @@ locals {
   ZONE2     = "${var.region}-2"
   ZONE3     = "${var.region}-3"
 }
-data "ibm_is_region" "ds_region" {
-  name = "${var.region}"
-}
-
 
 # VPC 1
 resource "random_id" "name1" {
@@ -34,7 +30,6 @@ resource "random_id" "name2" {
 }
 resource "ibm_is_vpc" "vpc2" {
   name = "vpc-${random_id.name2.hex}"
-  region = "${var.region}"
 }
 resource "ibm_is_subnet" "subnet2" {
   name            = "${var.prefix}-subnet-${random_id.name2.hex}-2"

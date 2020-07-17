@@ -4,7 +4,7 @@ With this template, you can use IBM Cloud Schematics to create two virtual priva
 
 **Included**:
 * 2 [virtual private cloud](https://cloud.ibm.com/docs/vpc-on-classic?topic=vpc-on-classic-getting-started) instances, in 3 zones.
-* 1 [transit gateway](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-getting-started) attached to both VPC.
+* 1 [transit gateway](https://cloud.ibm.com/docs/transit-gateway?topic=transit-gateway-view-gateway) attached to both VPC.
 
 ## Dependencies
 

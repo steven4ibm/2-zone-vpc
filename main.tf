@@ -3,6 +3,12 @@ locals {
   ZONE1     = "${var.region}-1"
   ZONE2     = "${var.region}-2"
   ZONE3     = "${var.region}-3"
+  SUBNETA1  = "10.101.1.0/24"
+  SUBNETA2  = "10.101.2.0/24"
+  SUBNETA3  = "10.101.3.0/24"
+  SUBNETB1  = "10.202.1.0/24"
+  SUBNETB2  = "10.202.1.0/24"
+  SUBNETB3  = "10.202.1.0/24"
 }
 
 # VPC 1
@@ -11,13 +17,54 @@ resource "random_id" "name1" {
 }
 resource "ibm_is_vpc" "vpc1" {
   name = "${var.prefix}-vpc-${random_id.name1.hex}"
+  address_prefix_management = "manual"
 }
-resource "ibm_is_subnet" "subnet1" {
-  name            = "${var.prefix}-subnet-${random_id.name1.hex}-1"
-  vpc             = "${ibm_is_vpc.vpc1.id}"
-  zone            = "${local.ZONE1}"
-  total_ipv4_address_count = 256
-
+# VPC 1 - AZ 1
+resource "ibm_is_vpc_address_prefix" "addpa1" {
+  name = "${var.prefix}-subnet-${random_id.name1.hex}-1"
+  vpc  = "${ibm_is_vpc.vpc1.id}"  
+  zone = "${local.ZONE1}"
+  cidr = "${local.SUBNETA1}"
+}
+resource "ibm_is_subnet" "subneta1" {
+  name  = "${var.prefix}-subnet-${random_id.name1.hex}-1"
+  vpc   = "${ibm_is_vpc.vpc1.id}"
+  zone  = "${local.ZONE1}"
+  ipv4_cidr_block  = "${local.SUBNETA1}"
+  provisioner "local-exec" {
+    command = "sleep 300"
+    when    = "destroy"
+  }
+}
+# VPC 1 - AZ 2
+resource "ibm_is_vpc_address_prefix" "addpa2" {
+  name = "${var.prefix}-subnet-${random_id.name1.hex}-2"
+  vpc  = "${ibm_is_vpc.vpc1.id}"  
+  zone = "${local.ZONE2}"
+  cidr = "${local.SUBNETA2}"
+}
+resource "ibm_is_subnet" "subneta2" {
+  name  = "${var.prefix}-subnet-${random_id.name1.hex}-2"
+  vpc   = "${ibm_is_vpc.vpc1.id}"
+  zone  = "${local.ZONE2}"
+  ipv4_cidr_block  = "${local.SUBNETA2}"
+  provisioner "local-exec" {
+    command = "sleep 300"
+    when    = "destroy"
+  }
+}
+# VPC 1 - AZ 3
+resource "ibm_is_vpc_address_prefix" "addpa3" {
+  name = "${var.prefix}-subnet-${random_id.name1.hex}-3"
+  vpc  = "${ibm_is_vpc.vpc1.id}"  
+  zone = "${local.ZONE3}"
+  cidr = "${local.SUBNETA3}"
+}
+resource "ibm_is_subnet" "subneta3" {
+  name  = "${var.prefix}-subnet-${random_id.name1.hex}-3"
+  vpc   = "${ibm_is_vpc.vpc1.id}"
+  zone  = "${local.ZONE3}"
+  ipv4_cidr_block  = "${local.SUBNETA3}"
   provisioner "local-exec" {
     command = "sleep 300"
     when    = "destroy"
@@ -28,15 +75,52 @@ resource "ibm_is_subnet" "subnet1" {
 resource "random_id" "name2" {
   byte_length = 2
 }
-resource "ibm_is_vpc" "vpc2" {
-  name = "vpc-${random_id.name2.hex}"
+# VPC 2 - AZ 1
+resource "ibm_is_vpc_address_prefix" "addpb1" {
+  name = "${var.prefix}-subnet-${random_id.name2.hex}-1"
+  vpc  = "${ibm_is_vpc.vpc1.id}"  
+  zone = "${local.ZONE1}"
+  cidr = "${local.SUBNETB1}"
 }
-resource "ibm_is_subnet" "subnet2" {
-  name            = "${var.prefix}-subnet-${random_id.name2.hex}-2"
-  vpc             = "${ibm_is_vpc.vpc2.id}"
-  zone            = "${local.ZONE2}"
-  total_ipv4_address_count = 256
-
+resource "ibm_is_subnet" "subnetb1" {
+  name  = "${var.prefix}-subnet-${random_id.name2.hex}-1"
+  vpc   = "${ibm_is_vpc.vpc1.id}"
+  zone  = "${local.ZONE1}"
+  ipv4_cidr_block  = "${local.SUBNETB1}"
+  provisioner "local-exec" {
+    command = "sleep 300"
+    when    = "destroy"
+  }
+}
+# VPC 2 - AZ 2
+resource "ibm_is_vpc_address_prefix" "addpb2" {
+  name = "${var.prefix}-subnet-${random_id.name2.hex}-2"
+  vpc  = "${ibm_is_vpc.vpc1.id}"  
+  zone = "${local.ZONE2}"
+  cidr = "${local.SUBNETB2}"
+}
+resource "ibm_is_subnet" "subnetb2" {
+  name  = "${var.prefix}-subnet-${random_id.name2.hex}-2"
+  vpc   = "${ibm_is_vpc.vpc1.id}"
+  zone  = "${local.ZONE2}"
+  ipv4_cidr_block  = "${local.SUBNETB2}"
+  provisioner "local-exec" {
+    command = "sleep 300"
+    when    = "destroy"
+  }
+}
+# VPC 2 - AZ 3
+resource "ibm_is_vpc_address_prefix" "addpb3" {
+  name = "${var.prefix}-subnet-${random_id.name2.hex}-3"
+  vpc  = "${ibm_is_vpc.vpc1.id}"  
+  zone = "${local.ZONE3}"
+  cidr = "${local.SUBNETB3}"
+}
+resource "ibm_is_subnet" "subneta3" {
+  name  = "${var.prefix}-subnet-${random_id.name2.hex}-3"
+  vpc   = "${ibm_is_vpc.vpc1.id}"
+  zone  = "${local.ZONE3}"
+  ipv4_cidr_block  = "${local.SUBNETB3}"
   provisioner "local-exec" {
     command = "sleep 300"
     when    = "destroy"

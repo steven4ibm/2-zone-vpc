@@ -78,13 +78,13 @@ resource "random_id" "name2" {
 # VPC 2 - AZ 1
 resource "ibm_is_vpc_address_prefix" "addpb1" {
   name = "${var.prefix}-subnet-${random_id.name2.hex}-1"
-  vpc  = "${ibm_is_vpc.vpc1.id}"  
+  vpc  = "${ibm_is_vpc.vpc2.id}"  
   zone = "${local.ZONE1}"
   cidr = "${local.SUBNETB1}"
 }
 resource "ibm_is_subnet" "subnetb1" {
   name  = "${var.prefix}-subnet-${random_id.name2.hex}-1"
-  vpc   = "${ibm_is_vpc.vpc1.id}"
+  vpc   = "${ibm_is_vpc.vpc2.id}"
   zone  = "${local.ZONE1}"
   ipv4_cidr_block  = "${local.SUBNETB1}"
   provisioner "local-exec" {
@@ -95,13 +95,13 @@ resource "ibm_is_subnet" "subnetb1" {
 # VPC 2 - AZ 2
 resource "ibm_is_vpc_address_prefix" "addpb2" {
   name = "${var.prefix}-subnet-${random_id.name2.hex}-2"
-  vpc  = "${ibm_is_vpc.vpc1.id}"  
+  vpc  = "${ibm_is_vpc.vpc2.id}"  
   zone = "${local.ZONE2}"
   cidr = "${local.SUBNETB2}"
 }
 resource "ibm_is_subnet" "subnetb2" {
   name  = "${var.prefix}-subnet-${random_id.name2.hex}-2"
-  vpc   = "${ibm_is_vpc.vpc1.id}"
+  vpc   = "${ibm_is_vpc.vpc2.id}"
   zone  = "${local.ZONE2}"
   ipv4_cidr_block  = "${local.SUBNETB2}"
   provisioner "local-exec" {
@@ -112,13 +112,13 @@ resource "ibm_is_subnet" "subnetb2" {
 # VPC 2 - AZ 3
 resource "ibm_is_vpc_address_prefix" "addpb3" {
   name = "${var.prefix}-subnet-${random_id.name2.hex}-3"
-  vpc  = "${ibm_is_vpc.vpc1.id}"  
+  vpc  = "${ibm_is_vpc.vpc2.id}"  
   zone = "${local.ZONE3}"
   cidr = "${local.SUBNETB3}"
 }
 resource "ibm_is_subnet" "subnetb3" {
   name  = "${var.prefix}-subnet-${random_id.name2.hex}-3"
-  vpc   = "${ibm_is_vpc.vpc1.id}"
+  vpc   = "${ibm_is_vpc.vpc2.id}"
   zone  = "${local.ZONE3}"
   ipv4_cidr_block  = "${local.SUBNETB3}"
   provisioner "local-exec" {

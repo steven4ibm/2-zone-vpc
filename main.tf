@@ -30,7 +30,7 @@ resource "ibm_is_subnet" "subneta1" {
   name  = "${var.prefix}-subnet-${random_id.name1.hex}-1"
   vpc   = "${ibm_is_vpc.vpc1.id}"
   zone  = "${local.ZONE1}"
-  ipv4_cidr_block  = "${local.SUBNETA1}"
+  ipv4_cidr_block  = "${ibm_is_vpc_address_prefix.addpa1.cidr}"
   provisioner "local-exec" {
     command = "sleep 300"
     when    = "destroy"
@@ -47,7 +47,7 @@ resource "ibm_is_subnet" "subneta2" {
   name  = "${var.prefix}-subnet-${random_id.name1.hex}-2"
   vpc   = "${ibm_is_vpc.vpc1.id}"
   zone  = "${local.ZONE2}"
-  ipv4_cidr_block  = "${local.SUBNETA2}"
+  ipv4_cidr_block  = "${ibm_is_vpc_address_prefix.addpa2.cidr}"
   provisioner "local-exec" {
     command = "sleep 300"
     when    = "destroy"
@@ -64,7 +64,7 @@ resource "ibm_is_subnet" "subneta3" {
   name  = "${var.prefix}-subnet-${random_id.name1.hex}-3"
   vpc   = "${ibm_is_vpc.vpc1.id}"
   zone  = "${local.ZONE3}"
-  ipv4_cidr_block  = "${local.SUBNETA3}"
+  ipv4_cidr_block  = "${ibm_is_vpc_address_prefix.addpa3.cidr}"
   provisioner "local-exec" {
     command = "sleep 300"
     when    = "destroy"
@@ -90,7 +90,7 @@ resource "ibm_is_subnet" "subnetb1" {
   name  = "${var.prefix}-subnet-${random_id.name2.hex}-1"
   vpc   = "${ibm_is_vpc.vpc2.id}"
   zone  = "${local.ZONE1}"
-  ipv4_cidr_block  = "${local.SUBNETB1}"
+  ipv4_cidr_block  = "${ibm_is_vpc_address_prefix.addpb1.cidr}"
   provisioner "local-exec" {
     command = "sleep 300"
     when    = "destroy"
@@ -107,7 +107,7 @@ resource "ibm_is_subnet" "subnetb2" {
   name  = "${var.prefix}-subnet-${random_id.name2.hex}-2"
   vpc   = "${ibm_is_vpc.vpc2.id}"
   zone  = "${local.ZONE2}"
-  ipv4_cidr_block  = "${local.SUBNETB2}"
+  ipv4_cidr_block  = "${ibm_is_vpc_address_prefix.addpb2.cidr}"
   provisioner "local-exec" {
     command = "sleep 300"
     when    = "destroy"
@@ -124,7 +124,7 @@ resource "ibm_is_subnet" "subnetb3" {
   name  = "${var.prefix}-subnet-${random_id.name2.hex}-3"
   vpc   = "${ibm_is_vpc.vpc2.id}"
   zone  = "${local.ZONE3}"
-  ipv4_cidr_block  = "${local.SUBNETB3}"
+  ipv4_cidr_block  = "${ibm_is_vpc_address_prefix.addpb3.cidr}"
   provisioner "local-exec" {
     command = "sleep 300"
     when    = "destroy"
